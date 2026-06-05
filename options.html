@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>inton 설정</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-width: 360px;
+      background: #f6f8fb;
+      color: #111827;
+    }
+
+    main {
+      box-sizing: border-box;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 36px 20px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: #2563eb;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+      line-height: 1.25;
+    }
+
+    p {
+      margin: 0 0 24px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      padding: 20px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      box-shadow: 0 10px 22px rgba(79, 70, 229, 0.18);
+    }
+
+    label {
+      color: #111827;
+      font-weight: 800;
+    }
+
+    input,
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      color: #111827;
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #2563eb;
+      outline: 3px solid rgba(37, 99, 235, 0.14);
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      border-radius: 7px;
+      padding: 11px 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    button[type="submit"] {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    button[type="button"] {
+      background: #eef2f7;
+      color: #111827;
+    }
+
+    #status {
+      min-height: 22px;
+      margin: 2px 0 0;
+      font-weight: 800;
+      color: #047857;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="brand">
+      <img src="assets/icon48.png" alt="">
+      <div>
+        <p class="eyebrow">AI API 설정</p>
+        <h1>inton 설정</h1>
+      </div>
+    </div>
+    <p>API Key는 이 브라우저의 확장 프로그램 저장소에만 저장됩니다. 웹페이지에서 실행되는 content script에는 전달되지 않습니다.</p>
+
+    <form id="options-form">
+      <label for="api-key">Groq API Keys</label>
+      <textarea id="api-key" name="api-key" autocomplete="off" placeholder="gsk_...&#10;gsk_...&#10;gsk_..." spellcheck="false"></textarea>
+      <p>API Key를 여러 줄로 입력하면 위에서부터 순서대로 사용합니다. 한도가 끝난 키가 있으면 다음 키로 자동 전환합니다.</p>
+
+      <label for="cerebras-api-key">Cerebras API Keys</label>
+      <textarea id="cerebras-api-key" name="cerebras-api-key" autocomplete="off" placeholder="csk_...&#10;csk_..." spellcheck="false"></textarea>
+      <p>Cerebras 키도 여러 줄로 입력할 수 있습니다. Groq 키를 모두 사용할 수 없으면 Cerebras 키까지 같은 순환 목록에서 시도합니다.</p>
+      <div class="actions">
+        <button type="submit">저장</button>
+        <button id="clear-key" type="button">삭제</button>
+      </div>
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <script src="options.js"></script>
+</body>
+</html>
